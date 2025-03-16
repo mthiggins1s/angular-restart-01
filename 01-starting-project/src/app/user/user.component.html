@@ -1,6 +1,11 @@
 <div>
-    <button>
-        <img />
-        <span>NAME</span>
-    </button>
+  <button>
+    <img
+      [src]="'assets/users/' + selectedUser.avatar"
+      [alt]="selectedUser.name"
+    />
+    <!-- Property Binding; helps you set values for properties of HTML elements -->
+    <span> {{ selectedUser.name }} </span>
+    <!-- string interpolation; allows us to reference any public property of our Component class. This is how you can output dynamic text or content in the template. -->
+  </button>
 </div>
