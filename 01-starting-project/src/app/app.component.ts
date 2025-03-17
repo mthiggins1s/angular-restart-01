@@ -12,4 +12,8 @@ import { DUMMY_USERS } from './dummy-users'; // we expose the imported data in t
 })
 export class AppComponent { // this is being imported to bootstrapApplication in main.ts.
   users = DUMMY_USERS;
+
+  onSelectUser(id: string) {
+    console.log('selected user with id ' + id);
+  }
 }

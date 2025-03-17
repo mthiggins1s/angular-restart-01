@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'; // added signal and computed from core.
+import { Component, EventEmitter, Input, Output, output } from '@angular/core'; // added Input and input (special function) from core.
 
 @Component({
   selector: 'app-user',
@@ -10,14 +10,19 @@ import { Component, Input } from '@angular/core'; // added signal and computed f
 
 // For the DUMMY_USERS; allows us to draw a user at random.
 export class UserComponent {
+  @Input({required: true}) id!: string;
   @Input({required: true}) avatar!: string; // with required: true, you tell Angular that this property must be SET.
   @Input({required: true}) name!: string;
+  @Output() select = new EventEmitter<string>(); // EventEmitter; will allow us to emit custom values to any parent component thats interested.
 
   get imagePath() {
     return 'assets/users/' + this.avatar;
   }
+
   
-  onSelectUser() {}
+  onSelectUser() {
+    this.select.emit(this.id); // we pass a new value to this .emit() value. "we dont have to if we dont want to pass a new value here" So if we were to pass a number here, we would get an error that tells us that we are NOT passing a string like we should.
+  }
 }
 
 
