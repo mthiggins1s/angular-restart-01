@@ -3,45 +3,22 @@
 
 <main>
   <ul id="users">
-    <!-- the id of "users" is for styling purposes. -->
+    @for (user of users; track user.id) {
+    <!-- Since we are dynamically outputting list data here, Angular wants to keep track of all rendered items. If it would be changed, Angular could re-use rendered lists items, so we dont have to re-create the list every time the list data changes. With the 'track' expression, we tell Angular which unique idenfication criteria can be assign by Angular AUTOMATICALLY to every list item, per user. -->
     <li>
-      <app-user
-        [id]="users[0].id"
-        [avatar]="users[0].avatar"
-        [name]="users[0].name"
-        (select)="onSelectUser($event)"
-      /> <!-- $ will hold the data/value that was emitted by the event we were listening to. -->
+      <app-user [user]="user" (select)="onSelectUser($event)" />
+      <!-- $ will hold the data/value that was emitted by the event we were listening to. -->
 
       <!-- Inputs the HTML for the user.component.html -->
     </li>
-    <li>
-      <app-user
-        [id]="users[1].id"
-        [avatar]="users[1].avatar"
-        [name]="users[1].name"
-        (select)="onSelectUser($event)"
-      />
-      <!-- Inputs the HTML for the user.component.html -->
-    </li>
-    <li>
-      <app-user
-        [id]="users[2].id"
-        [avatar]="users[2].avatar"
-        [name]="users[2].name"
-        (select)="onSelectUser($event)"
-      />
-      <!-- Inputs the HTML for the user.component.html -->
-    </li>
-    <li>
-      <app-user
-        [id]="users[3].id"
-        [avatar]="users[3].avatar"
-        [name]="users[3].name"
-        (select)="onSelectUser($event)"
-      />
-      <!-- Inputs the HTML for the user.component.html -->
-    </li>
+    }
   </ul>
+  <!-- Closing tag added here -->
 
-  TASKS OF THE USER
+  @if (selectedUser) {
+  <app-tasks [name]="selectedUser.name" />
+  <!-- adding Property Binding to this; selectedUser will now NEVER be undefined. -->
+  } @else {
+  <p id="fallback">Select a User to see their Tasks</p>
+  }
 </main>
