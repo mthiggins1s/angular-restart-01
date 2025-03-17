@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users'; // importing DUMMY_USERS for the UserComponent.
-
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length) // allows us to get a random number between zero and the highest available index in the array.
+import { Component, Input } from '@angular/core'; // added signal and computed from core.
 
 @Component({
   selector: 'app-user',
@@ -13,14 +10,16 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length) // allows us 
 
 // For the DUMMY_USERS; allows us to draw a user at random.
 export class UserComponent {
-  selectedUser = DUMMY_USERS[randomIndex]; // Output: random id chosen from zero to highest index. We can now access selectedUser from inside the template of this component (all properties in this class are available in the templateUrl).
+  @Input({required: true}) avatar!: string; // with required: true, you tell Angular that this property must be SET.
+  @Input({required: true}) name!: string;
 
-  get imagePath() { // this makes a getter; a method (function inside a class), useable like a property (it doesnt need to be called explicitly and returns a new value)
-    return 'assets/users/' + this.selectedUser.avatar // we have to add 'this.' because we are doing this from INSIDE THE CLASS INSTEAD OF INSIDE THE TEMPLATE.
+  get imagePath() {
+    return 'assets/users/' + this.avatar;
   }
-
-  onSelectUser() {  // this gets executed everytime we click on the user.
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.selectedUser = DUMMY_USERS[randomIndex];
-  }
+  
+  onSelectUser() {}
 }
+
+
+// what we are doing here is we are adding a signal to the class, we then pass the inital value to the signal (DUMMY_USERS[randomIndex]) with the help of const randomIndex.
+  // What is a signal? Its a container that contains a value (like DUMMY_USERS) and when you change the value, Angular will be notified and is then able to identify all places where the value is being used, and then its able to update those places. The main idea behind signals is that you dont just have inital values in them, but you can also change the value by CALLING the '.set()' method on the signal. Example: this.selectedUser.set(DUMMY_USERS[randomIndex])

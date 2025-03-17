@@ -3,7 +3,16 @@
 <main>
     <ul id="users"> <!-- the id of "users" is for styling purposes. -->
         <li>
-            <app-user /> <!-- Inputs the HTML for the user.component.html -->
+            <app-user [avatar]="users[0].avatar" [name]="users[0].name" /> <!-- Inputs the HTML for the user.component.html -->
+        </li>
+        <li>
+            <app-user [avatar]="users[1].avatar" [name]="users[1].name" /> <!-- Inputs the HTML for the user.component.html -->
+        </li>
+        <li>
+            <app-user [avatar]="users[2].avatar" [name]="users[2].name" /> <!-- Inputs the HTML for the user.component.html -->
+        </li>
+        <li>
+            <app-user [avatar]="users[3].avatar" [name]="users[3].name" /> <!-- Inputs the HTML for the user.component.html -->
         </li>
     </ul>
 </main>

@@ -2,10 +2,15 @@
   <button (click)="onSelectUser()" > <!-- added an eventListener to hear a click (being called from user.component.ts) -->
     <img
       [src]="imagePath"
-      [alt]="selectedUser.name"
+      [alt]="name"
     />
     <!-- Property Binding; helps you set values for properties of HTML elements -->
-    <span> {{ selectedUser.name }} </span>
+    <span> {{ name }} </span>
     <!-- string interpolation; allows us to reference any public property of our Component class. This is how you can output dynamic text or content in the template. -->
   </button>
 </div>
+
+
+
+<!-- We have to call the signal value as a function with () after the property that stores the value to get the stored value.
+  It tells Angular that you are trying the value of the signal in this specific place, and then Angular is able to set up a subscription so that the place where the value is used, will be updated on the UI when the signal value changes.  -->
