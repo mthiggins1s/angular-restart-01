@@ -1,7 +1,7 @@
 <div>
-  <button>
+  <button (click)="onSelectUser()" > <!-- added an eventListener to hear a click (being called from user.component.ts) -->
     <img
-      [src]="'assets/users/' + selectedUser.avatar"
+      [src]="imagePath"
       [alt]="selectedUser.name"
     />
     <!-- Property Binding; helps you set values for properties of HTML elements -->
