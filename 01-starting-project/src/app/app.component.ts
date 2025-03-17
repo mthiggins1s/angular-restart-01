@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
 
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from "./user/user.component";
@@ -9,7 +8,7 @@ import { TasksComponent } from "./tasks/tasks.component"; // we expose the impor
 @Component({ // decorator; TypeScipt feature to add metadata (comes from the Component in the Angular package).
   selector: 'app-root', // tells Angular what element it should look for so they can be replaced by this component and its markup (markup is stored in the templateUrl).
   standalone: true,
-  imports: [HeaderComponent, UserComponent, TasksComponent, NgFor],
+  imports: [HeaderComponent, UserComponent, TasksComponent],
   templateUrl: './app.component.html', // contains the markup for the html element.
   styleUrl: './app.component.css', // contains the markup for the css element.
 })
