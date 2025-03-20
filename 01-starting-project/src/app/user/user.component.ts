@@ -1,15 +1,5 @@
 import { Component, EventEmitter, Input, Output, output } from '@angular/core'; // added Input and input (special function) from core.
-
-// type User = { id: string; // add a type name (User) and then assign a type definition.
-// name: string;
-// avatar: string;
-// }
-
-interface User { // With interface, you can ONLY define object types, with 'type', you can define other types.
-  id: string;
-  avatar: string;
-  name: string;
-}
+import { User } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +12,7 @@ interface User { // With interface, you can ONLY define object types, with 'type
 // For the DUMMY_USERS; allows us to draw a user at random.
 export class UserComponent {
   @Input({required: true}) user!: User; // created a type
-  ;
+  @Input({required: true}) selected!: boolean;
   @Output() select = new EventEmitter<string>(); // EventEmitter; will allow us to emit custom values to any parent component thats interested.
 
   get imagePath() {

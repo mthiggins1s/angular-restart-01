@@ -7,7 +7,7 @@
     <!-- Since we are dynamically outputting list data here, Angular wants to keep track of all rendered items. If it would be changed, Angular could re-use rendered lists items, so we dont have to re-create the list every time the list data changes. With the 'track' expression, we tell Angular which unique idenfication criteria can be assign by Angular AUTOMATICALLY to every list item, per user. -->
     <li>
       <!-- Structural Directive; enhancements that can be added to elements that will be changed where the elements are being used -->
-      <app-user [user]="user" (select)="onSelectUser($event)" />
+      <app-user [selected]="user.id === selectedUserId" [user]="user" (select)="onSelectUser($event)" />
       <!-- $ will hold the data/value that was emitted by the event we were listening to. -->
 
       <!-- Inputs the HTML for the user.component.html -->
@@ -17,7 +17,7 @@
   <!-- Closing tag added here -->
 
   @if (selectedUser) {
-  <app-tasks [name]="selectedUser.name"></app-tasks>
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
   } @else {
   <p id="fallback">Select a User to see their Tasks</p>
   }

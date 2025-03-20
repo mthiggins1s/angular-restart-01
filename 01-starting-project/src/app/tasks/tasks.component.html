@@ -1,23 +1,21 @@
-<section id="tasks">
-    <header>
-        <h2>{{ name }}'s Tasks</h2>
-        <menu>
-            <button>Add Tasks</button>
-        </menu>
-    </header>
+@if (isAddingTask) {
+<app-new-task (cancel)="onCancelAddTask()" />
+}
 
-    <ul>
-        <li>
-            <app-task />
-        </li>
-        <li>
-            <app-task />
-        </li>
-        <li>
-            <app-task />
-        </li>
-        <li>
-            <app-task />
-        </li>
-    </ul>
+<section id="tasks">
+  <header>
+    <h2>{{ name }}'s Tasks</h2>
+    <menu>
+      <button (click)="onStartAddTask()">Add Tasks</button>
+    </menu>
+  </header>
+
+  <ul>
+    @for (task of selectedUserTasks; track task.id) {
+    <li>
+      <!-- $event gives us access to the event data that was emitted. -->
+      <app-task [task]="task" (complete)="onCompleteTask($event)" />
+    </li>
+    }
+  </ul>
 </section>

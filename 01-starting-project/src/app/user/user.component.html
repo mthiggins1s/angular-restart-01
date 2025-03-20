@@ -1,5 +1,5 @@
 <div>
-  <button (click)="onSelectUser()" > <!-- added an eventListener to hear a click (being called from user.component.ts) -->
+  <button [class.active]="selected" (click)="onSelectUser()" > <!-- added an eventListener to hear a click (being called from user.component.ts) -->
     <img
       [src]="imagePath"
       [alt]="user.name"
